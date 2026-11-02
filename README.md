@@ -22,7 +22,7 @@
 
 ## ✨ Features
 
-| | |
+| Feature | What it does |
 |---|---|
 | 🖱️ **Auto Place** | Turn it on, open the Paint palette, and glide the mouse over your art. Each pixel under the cursor gets the right color and is placed for you. |
 | 🤖 **Auto-Paint** | Give your hand a break. A ghost cursor fills in the pixels on screen for you, stopping when your charges run out. |
@@ -43,8 +43,8 @@
     <th>Auto-Paint</th>
   </tr>
   <tr>
-    <td align="center"><img src="docs/panel-place.png" alt="WPaint panel in Auto Place mode" width="300"></td>
-    <td align="center"><img src="docs/panel-paint.png" alt="WPaint panel in Auto-Paint mode at 2x speed" width="300"></td>
+    <td align="center" valign="top"><img src="docs/panel-place.png" alt="WPaint panel in Auto Place mode" width="300"></td>
+    <td align="center" valign="top"><img src="docs/panel-paint.png" alt="WPaint panel in Auto-Paint mode at 2x speed" width="300"></td>
   </tr>
 </table>
 
