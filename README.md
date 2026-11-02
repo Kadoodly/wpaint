@@ -7,6 +7,7 @@
   <img alt="Manifest" src="https://img.shields.io/badge/manifest-v3-0369a1?style=flat-square">
   <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Edge-4f46e5?style=flat-square">
   <img alt="Build" src="https://img.shields.io/badge/build-none%20required-475569?style=flat-square">
+  <img alt="Tampermonkey not required" src="https://img.shields.io/badge/tampermonkey-not%20required-475569?style=flat-square">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-64748b?style=flat-square"></a>
 </p>
 
@@ -71,6 +72,7 @@ WPaint takes the repetitive clicking out of painting on WPlace. Load an image, p
 | **Positioning** | Place the template with a single click, adjust it one pixel at a time, and set the overlay opacity. |
 | **Persistence** | The image, position, size and settings are saved in the browser and restored on your next visit, until removed. |
 | **Compact panel** | A draggable, collapsible control panel. |
+| **Standalone** | Runs as a regular browser extension. No Tampermonkey or other userscript manager is needed. |
 
 ## Screenshots
 
@@ -95,6 +97,7 @@ WPaint takes the repetitive clicking out of painting on WPlace. Load an image, p
 ## Installation
 
 WPaint is not published on the Chrome Web Store and is installed as an unpacked extension.
+It is a standalone extension: **no Tampermonkey, Violentmonkey or other userscript manager is required**.
 
 1. Download `wpaint-1.0.zip` from the [latest release](https://github.com/Kadoodly/wpaint/releases/latest) and extract it to a permanent location.
 2. Open `chrome://extensions` in Chrome, or `edge://extensions` in Edge.

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WPaint – Template Overlay and Auto Painter for WPlace</title>
   <meta name="description" content="WPaint is a free, open-source Chrome and Edge extension for WPlace (wplace.live). Overlay any image as a pixel-art template, convert it to the WPlace palette, and place the right colors automatically as you hover.">
-  <meta name="keywords" content="WPlace, wplace.live, WPlace extension, WPlace template, WPlace overlay, WPlace auto paint, WPlace auto painter, pixel art, Chrome extension, Edge extension">
+  <meta name="keywords" content="WPlace, wplace.live, WPlace extension, WPlace template, WPlace overlay, WPlace auto paint, WPlace auto painter, pixel art, Chrome extension, Edge extension, WPlace without Tampermonkey">
   <meta name="author" content="Kadoodle">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f172a">
@@ -58,6 +58,11 @@
         "@type": "Question",
         "name": "Which browsers does WPaint support?",
         "acceptedAnswer": { "@type": "Answer", "text": "WPaint supports Google Chrome and Microsoft Edge, and other Chromium browsers that allow loading unpacked Manifest V3 extensions." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does WPaint need Tampermonkey?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. WPaint is a standalone browser extension that runs on wplace.live by itself. Tampermonkey, Violentmonkey and other userscript managers are not required." }
       },
       {
         "@type": "Question",
@@ -215,7 +220,7 @@
           <a class="btn primary" href="https://github.com/Kadoodly/wpaint/releases/latest">Download v1.0</a>
           <a class="btn" href="https://github.com/Kadoodly/wpaint">View on GitHub</a>
         </div>
-        <p class="meta">Version 1.0 · MIT License · Manifest V3 · No build step</p>
+        <p class="meta">Version 1.0 · MIT License · Manifest V3 · No Tampermonkey required</p>
       </div>
       <div class="hero-shot">
         <img src="autopaint.png" alt="WPaint Auto-Paint filling a pixel-art template on the map" width="1280" height="800">
@@ -273,7 +278,7 @@
     <section id="install">
       <div class="wrap">
         <h2>Installation</h2>
-        <p class="section-lead">WPaint is installed as an unpacked extension and takes about a minute to set up.</p>
+        <p class="section-lead">WPaint is installed as an unpacked extension and takes about a minute to set up. No Tampermonkey or other userscript manager is required.</p>
         <ol class="steps">
           <li>Download <code>wpaint-1.0.zip</code> from the <a href="https://github.com/Kadoodly/wpaint/releases/latest">latest release</a> and extract it to a permanent location.</li>
           <li>Open <code>chrome://extensions</code> in Chrome or <code>edge://extensions</code> in Edge, and enable <strong>Developer mode</strong>.</li>
@@ -289,6 +294,7 @@
         <p class="section-lead">Common questions about WPaint and how it works with WPlace.</p>
         <details><summary>What is WPaint?</summary><p>WPaint is a free browser extension for WPlace (wplace.live) that shows your image on the map as a template and places the matching palette colors as you move the cursor, or automatically with Auto-Paint.</p></details>
         <details><summary>Which browsers does WPaint support?</summary><p>Google Chrome and Microsoft Edge, and other Chromium browsers that allow loading unpacked Manifest V3 extensions.</p></details>
+        <details><summary>Does WPaint need Tampermonkey?</summary><p>No. WPaint is a standalone browser extension that runs on wplace.live by itself. Tampermonkey, Violentmonkey and other userscript managers are not required.</p></details>
         <details><summary>Does WPaint submit pixels on its own?</summary><p>No. WPaint stages pixels in the site's own palette. Nothing is submitted until you press the site's Paint button, so the site's standard verification is unchanged.</p></details>
         <details><summary>Does WPaint store my password or cookies?</summary><p>No. WPaint does not store or transmit passwords, tokens or cookies. Templates and settings are kept in your browser's local storage for wplace.live.</p></details>
         <details><summary>Is WPaint affiliated with WPlace?</summary><p>No. WPaint is an independent project and is not affiliated with, endorsed by, or supported by WPlace. Use it at your own risk.</p></details>
