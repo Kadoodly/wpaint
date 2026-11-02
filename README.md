@@ -7,6 +7,7 @@
   <img alt="Manifest" src="https://img.shields.io/badge/manifest-v3-0369a1?style=flat-square">
   <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Edge-4f46e5?style=flat-square">
   <img alt="Build" src="https://img.shields.io/badge/build-none%20required-475569?style=flat-square">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-64748b?style=flat-square"></a>
 </p>
 
 <p align="center">
@@ -44,10 +45,11 @@
 - [Project structure](#project-structure)
 - [AI disclosure](#ai-disclosure)
 - [Disclaimer](#disclaimer)
+- [License](#license)
 
 ## Overview
 
-WPaint is a free browser extension for Google Chrome and Microsoft Edge that adds a template overlay and auto painter to [WPlace](https://wplace.live), the collaborative pixel-art world map. It converts any PNG or JPEG into the WPlace color palette, shows it on the map as a guide, and places the correct colors for you.
+WPaint is a free, open-source browser extension for Google Chrome and Microsoft Edge that adds a template overlay and auto painter to [WPlace](https://wplace.live), the collaborative pixel-art world map. It converts any PNG or JPEG into the WPlace color palette, shows it on the map as a guide, and places the correct colors for you.
 
 WPaint takes the repetitive clicking out of painting on WPlace. Load an image, position it on the canvas, and let WPaint pick and place the right color for each pixel. It works alongside the site's normal painting flow: pixels are staged in the site's own palette, and nothing is submitted until you press the site's **Paint** button.
 
@@ -204,7 +206,8 @@ Very large images can exceed the browser's storage limit. The template continues
 ├── manifest.json     Extension manifest (Manifest V3)
 ├── hover-paint.js    Content script: map connection, template, panel, Auto Place and Auto-Paint
 ├── icons/            Extension icon (SVG source and PNG sizes)
-└── docs/             Images used in this README
+├── docs/             Project website and README images
+└── LICENSE           MIT License
 ```
 
 ## AI disclosure
@@ -222,3 +225,7 @@ This project was produced entirely with artificial intelligence. The extension's
 > WPaint is not affiliated with, endorsed by, or supported by WPlace. You use it at your own risk and are solely
 > responsible for how it is used and for complying with the WPlace terms of service. The authors accept no liability
 > for account restrictions, lost progress, or any other consequences of its use.
+
+## License
+
+WPaint is released under the [MIT License](LICENSE). You are free to use, modify and distribute it, provided the copyright and license notice are included.
