@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WPaint – Template Overlay and Auto Painter for WPlace</title>
+  <meta name="description" content="WPaint is a free Chrome and Edge extension for WPlace (wplace.live). Overlay any image as a pixel-art template, convert it to the WPlace palette, and place the right colors automatically as you hover.">
+  <meta name="keywords" content="WPlace, wplace.live, WPlace extension, WPlace template, WPlace overlay, WPlace auto paint, WPlace auto painter, pixel art, Chrome extension, Edge extension">
+  <meta name="author" content="Kadoodle">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="canonical" href="https://kadoodly.github.io/wpaint/">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WPaint">
+  <meta property="og:title" content="WPaint – Template Overlay and Auto Painter for WPlace">
+  <meta property="og:description" content="A free Chrome and Edge extension that overlays your image on the WPlace map and places the matching colors as you hover.">
+  <meta property="og:url" content="https://kadoodly.github.io/wpaint/">
+  <meta property="og:image" content="https://kadoodly.github.io/wpaint/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="WPaint control panel next to a pixel-art template on the map">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WPaint – Template Overlay and Auto Painter for WPlace">
+  <meta name="twitter:description" content="A free Chrome and Edge extension that overlays your image on the WPlace map and places the matching colors as you hover.">
+  <meta name="twitter:image" content="https://kadoodly.github.io/wpaint/social-preview.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "WPaint",
+    "softwareVersion": "1.0",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Windows, macOS, Linux, ChromeOS",
+    "browserRequirements": "Google Chrome or Microsoft Edge (Manifest V3)",
+    "description": "Browser extension for WPlace that overlays a template image and places the matching color as the cursor moves over each pixel.",
+    "url": "https://kadoodly.github.io/wpaint/",
+    "downloadUrl": "https://github.com/Kadoodly/wpaint/releases/latest",
+    "image": "https://kadoodly.github.io/wpaint/social-preview.png",
+    "screenshot": "https://kadoodly.github.io/wpaint/autopaint.png",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is WPaint?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WPaint is a free browser extension for WPlace (wplace.live) that shows your image on the map as a template and places the matching palette colors as you move the cursor, or automatically with Auto-Paint." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which browsers does WPaint support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WPaint supports Google Chrome and Microsoft Edge, and other Chromium browsers that allow loading unpacked Manifest V3 extensions." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does WPaint submit pixels on its own?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. WPaint stages pixels in the site's own palette. Nothing is submitted until you press the site's Paint button." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does WPaint store my password or cookies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. WPaint does not store or transmit passwords, tokens or cookies. Templates and settings are kept in your browser's local storage." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is WPaint affiliated with WPlace?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. WPaint is an independent project and is not affiliated with, endorsed by, or supported by WPlace. Use it at your own risk." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-2: #0f172a;
+      --panel: #111a2e;
+      --line: rgba(148, 163, 184, .16);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #2dd4bf;
+      --accent-2: #38bdf8;
+      --accent-3: #818cf8;
+      --warn: #f59e0b;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(45, 212, 191, .14), transparent 60%),
+        radial-gradient(900px 600px at 100% 0%, rgba(129, 140, 248, .14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", -apple-system, BlinkMacSystemFont, Inter, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      background: rgba(11, 17, 32, .72);
+      border-bottom: 1px solid var(--line);
+    }
+    header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 18px; }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .hero { padding-top: 72px; padding-bottom: 40px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--accent); border: 1px solid rgba(45, 212, 191, .35); padding: 3px 10px; border-radius: 99px; }
+    h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.1; margin: 18px 0 16px; letter-spacing: -.02em; }
+    h1 .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: var(--muted); font-size: 18px; margin: 0 0 28px; max-width: 34em; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; border: 1px solid var(--line); color: var(--text); background: rgba(255, 255, 255, .04); }
+    .btn:hover { text-decoration: none; background: rgba(255, 255, 255, .08); }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #06202a; border: 0; }
+    .btn.primary:hover { filter: brightness(1.06); }
+    .meta { margin-top: 18px; color: var(--muted); font-size: 13px; }
+    .hero-shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0, 0, 0, .45); overflow: hidden; background: var(--panel); }
+    .hero-shot img { display: block; width: 100%; height: auto; }
+
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 28px; margin: 0 0 8px; letter-spacing: -.01em; }
+    .section-lead { color: var(--muted); margin: 0 0 32px; max-width: 46em; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { background: rgba(17, 26, 46, .7); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .card h3 { margin: 0 0 6px; font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .card .tag { display: block; width: 28px; height: 4px; border-radius: 4px; margin-bottom: 14px; background: linear-gradient(90deg, var(--accent), var(--accent-3)); }
+
+    .modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+    .mode { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; align-items: start; }
+    .mode img { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+    .mode h3 { margin: 4px 0 8px; }
+    .mode p, .mode li { color: var(--muted); font-size: 15px; }
+    .mode ol { padding-left: 20px; margin: 10px 0 0; }
+
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .steps li { counter-increment: s; position: relative; padding: 16px 18px 16px 62px; background: rgba(17, 26, 46, .7); border: 1px solid var(--line); border-radius: 12px; }
+    .steps li::before { content: counter(s); position: absolute; left: 18px; top: 14px; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; font-weight: 700; color: #06202a; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+    code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .9em; background: rgba(148, 163, 184, .14); padding: 2px 6px; border-radius: 6px; }
+    kbd { font-family: ui-monospace, Consolas, monospace; font-size: .85em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 1px 7px; background: rgba(255, 255, 255, .05); }
+
+    details { background: rgba(17, 26, 46, .7); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { color: var(--muted); margin: 10px 0 0; }
+
+    .notice { border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: 12px; padding: 18px 20px; background: rgba(245, 158, 11, .06); margin-bottom: 16px; }
+    .notice.info { border-left-color: var(--accent-2); background: rgba(56, 189, 248, .06); }
+    .notice h3 { margin: 0 0 6px; font-size: 16px; }
+    .notice p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: minmax(0, 1fr); padding-top: 48px; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .modes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 16px; }
+      .nav-links { display: none; }
+      .grid { grid-template-columns: minmax(0, 1fr); }
+      .mode { grid-template-columns: minmax(0, 1fr); }
+      .mode img { max-width: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="icon.svg" alt="" width="28" height="28">WPaint</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#features">Features</a>
+        <a href="#modes">Modes</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/Kadoodly/wpaint">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Free extension for Chrome and Edge</span>
+        <h1><span class="grad">WPaint</span>: template overlay and auto painter for WPlace</h1>
+        <p class="lead">Turn any image into WPlace pixel art. WPaint shows your template on the <a href="https://wplace.live">wplace.live</a> map and places the matching palette color as you move the cursor, or paints the visible area for you with Auto-Paint.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/Kadoodly/wpaint/releases/latest">Download v1.0</a>
+          <a class="btn" href="https://github.com/Kadoodly/wpaint">View on GitHub</a>
+        </div>
+        <p class="meta">Version 1.0 · Manifest V3 · No account linking · No build step</p>
+      </div>
+      <div class="hero-shot">
+        <img src="autopaint.png" alt="WPaint Auto-Paint filling a pixel-art template on the map" width="1280" height="800">
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="wrap">
+        <h2>Features</h2>
+        <p class="section-lead">Everything needed to recreate an image on the WPlace canvas, in a single compact panel.</p>
+        <div class="grid">
+          <div class="card"><span class="tag"></span><h3>Template overlay</h3><p>Load a PNG or JPEG, convert it to the WPlace palette, and display it over the map at any opacity.</p></div>
+          <div class="card"><span class="tag"></span><h3>Auto Place</h3><p>With the Paint palette open, each pixel under the cursor receives the correct color. No clicking required.</p></div>
+          <div class="card"><span class="tag"></span><h3>Auto-Paint</h3><p>Fills the visible template with an on-screen cursor at 1×, 2×, 5× or 10× speed, up to your charge count.</p></div>
+          <div class="card"><span class="tag"></span><h3>Live resizing</h3><p>Resize with a slider or exact dimensions. The aspect ratio is preserved and the preview updates instantly.</p></div>
+          <div class="card"><span class="tag"></span><h3>Owned colors</h3><p>Detects premium colors unlocked on your account and limits the template to colors you can place.</p></div>
+          <div class="card"><span class="tag"></span><h3>Saved between visits</h3><p>Your image, position and settings are restored automatically until you remove them.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modes">
+      <div class="wrap">
+        <h2>Two painting modes</h2>
+        <p class="section-lead">Each mode has its own tab and keeps its own settings. Pixels are only submitted when you press the site's own Paint button.</p>
+        <div class="modes">
+          <div class="mode">
+            <img src="panel-place.png" alt="WPaint control panel in Auto Place mode" width="314" height="806" loading="lazy">
+            <div>
+              <h3>Auto Place</h3>
+              <p>Paint by moving the mouse. Turn it on with the switch or <kbd>H</kbd>, then sweep the cursor across your template.</p>
+              <ol>
+                <li>Open the site's Paint palette.</li>
+                <li>Enable <strong>Place as I hover</strong>.</li>
+                <li>Move across the template, then press Paint.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="mode">
+            <img src="panel-paint.png" alt="WPaint control panel in Auto-Paint mode" width="314" height="766" loading="lazy">
+            <div>
+              <h3>Auto-Paint</h3>
+              <p>Let WPaint fill the template on screen for you. Stop at any time with <kbd>Esc</kbd>.</p>
+              <ol>
+                <li>Open the site's Paint palette.</li>
+                <li>Choose a speed and select <strong>Auto-Paint</strong>.</li>
+                <li>When it finishes, press Paint.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="wrap">
+        <h2>Installation</h2>
+        <p class="section-lead">WPaint is installed as an unpacked extension and takes about a minute to set up.</p>
+        <ol class="steps">
+          <li>Download <code>wpaint-1.0.zip</code> from the <a href="https://github.com/Kadoodly/wpaint/releases/latest">latest release</a> and extract it to a permanent location.</li>
+          <li>Open <code>chrome://extensions</code> in Chrome or <code>edge://extensions</code> in Edge, and enable <strong>Developer mode</strong>.</li>
+          <li>Select <strong>Load unpacked</strong> and choose the extracted <code>wpaint</code> folder.</li>
+          <li>Open <a href="https://wplace.live">wplace.live</a>. The WPaint panel appears on the left side of the page.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2>Frequently asked questions</h2>
+        <p class="section-lead">Common questions about WPaint and how it works with WPlace.</p>
+        <details><summary>What is WPaint?</summary><p>WPaint is a free browser extension for WPlace (wplace.live) that shows your image on the map as a template and places the matching palette colors as you move the cursor, or automatically with Auto-Paint.</p></details>
+        <details><summary>Which browsers does WPaint support?</summary><p>Google Chrome and Microsoft Edge, and other Chromium browsers that allow loading unpacked Manifest V3 extensions.</p></details>
+        <details><summary>Does WPaint submit pixels on its own?</summary><p>No. WPaint stages pixels in the site's own palette. Nothing is submitted until you press the site's Paint button, so the site's standard verification is unchanged.</p></details>
+        <details><summary>Does WPaint store my password or cookies?</summary><p>No. WPaint does not store or transmit passwords, tokens or cookies. Templates and settings are kept in your browser's local storage for wplace.live.</p></details>
+        <details><summary>Is WPaint affiliated with WPlace?</summary><p>No. WPaint is an independent project and is not affiliated with, endorsed by, or supported by WPlace. Use it at your own risk.</p></details>
+      </div>
+    </section>
+
+    <section id="disclaimer">
+      <div class="wrap">
+        <h2>Disclaimer</h2>
+        <p class="section-lead">Please read before installing.</p>
+        <div class="notice">
+          <h3>Use at your own risk</h3>
+          <p>WPaint is provided "as is", without warranty of any kind. It is not affiliated with, endorsed by, or supported by WPlace. Automated or assisted input may conflict with the site's terms of service. You are solely responsible for how it is used, and the authors accept no liability for account restrictions, lost progress, or any other consequences of its use.</p>
+        </div>
+        <div class="notice info">
+          <h3>AI-generated project</h3>
+          <p>WPaint was created entirely with AI. Its source code, interface, icon, documentation and screenshots were generated by Claude, an AI model developed by Anthropic, at the direction of the project owner. The code has not been independently audited; review it before installing.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>WPaint 1.0 · Not affiliated with WPlace</span>
+      <span><a href="https://github.com/Kadoodly/wpaint">Source</a> · <a href="https://github.com/Kadoodly/wpaint/releases/latest">Download</a> · <a href="https://github.com/Kadoodly/wpaint/issues">Issues</a></span>
+    </div>
+  </footer>
+</body>
+</html>

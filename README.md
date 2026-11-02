@@ -14,6 +14,14 @@
   and selects and places the matching color as the cursor moves over each pixel.
 </p>
 
+<p align="center">
+  <a href="https://kadoodly.github.io/wpaint/"><b>Website</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/Kadoodly/wpaint/releases/latest"><b>Download</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/Kadoodly/wpaint/issues"><b>Report an issue</b></a>
+</p>
+
 > [!WARNING]
 > **Use at your own risk.** WPaint is an independent project and is not affiliated with, endorsed by, or supported by WPlace.
 > Automated or assisted input may conflict with the site's terms of service, and your account is your responsibility.
@@ -38,6 +46,8 @@
 - [Disclaimer](#disclaimer)
 
 ## Overview
+
+WPaint is a free browser extension for Google Chrome and Microsoft Edge that adds a template overlay and auto painter to [WPlace](https://wplace.live), the collaborative pixel-art world map. It converts any PNG or JPEG into the WPlace color palette, shows it on the map as a guide, and places the correct colors for you.
 
 WPaint takes the repetitive clicking out of painting on WPlace. Load an image, position it on the canvas, and let WPaint pick and place the right color for each pixel. It works alongside the site's normal painting flow: pixels are staged in the site's own palette, and nothing is submitted until you press the site's **Paint** button.
 
@@ -74,29 +84,16 @@ WPaint takes the repetitive clicking out of painting on WPlace. Load an image, p
   <br><sub>Auto-Paint in progress. The on-screen cursor fills the template row by row.</sub>
 </p>
 
-<details>
-<summary>Additional screenshots</summary>
-<br>
-<p align="center">
-  <img src="docs/autoplace.png" alt="Template positioned on the canvas with Auto Place enabled" width="100%">
-  <br><sub>Template positioned on the canvas with Auto Place enabled.</sub>
-</p>
-<p align="center">
-  <img src="docs/autopaint-done.png" alt="Auto-Paint finished after using all available charges" width="100%">
-  <br><sub>Auto-Paint stops once all available charges have been used.</sub>
-</p>
-</details>
-
 <sub>Screenshots were taken on a simulated demo canvas and do not show real WPlace artwork.</sub>
 
 ## Installation
 
 WPaint is not published on the Chrome Web Store and is installed as an unpacked extension.
 
-1. Download the repository (**Code → Download ZIP**) and extract it to a permanent location.
+1. Download `wpaint-1.0.zip` from the [latest release](https://github.com/Kadoodly/wpaint/releases/latest) and extract it to a permanent location.
 2. Open `chrome://extensions` in Chrome, or `edge://extensions` in Edge.
 3. Enable **Developer mode**.
-4. Select **Load unpacked** and choose the extracted folder (the folder containing `manifest.json`).
+4. Select **Load unpacked** and choose the extracted `wpaint` folder (the folder containing `manifest.json`).
 5. Open or reload [wplace.live](https://wplace.live). The WPaint panel appears on the left side of the page and can be moved by dragging its header.
 
 > [!NOTE]
