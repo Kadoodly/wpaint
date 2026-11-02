@@ -93,8 +93,8 @@
     <text x="252" y="170" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="84" font-weight="800" fill="url(#title)" letter-spacing="-1">WPaint</text>
     <rect x="572" y="118" width="74" height="34" rx="17" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".2"/>
     <text x="609" y="141" text-anchor="middle" font-family="Segoe UI, -apple-system, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#e2e8f0">v1.0</text>
-    <text x="256" y="216" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="27" font-weight="500" fill="#cbd5e1">Hover to paint on WPlace. No clicking needed.</text>
-    <text x="256" y="254" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="19" fill="#94a3b8">Auto Place  ·  Auto-Paint  ·  Live resize  ·  Your own colors</text>
+    <text x="256" y="216" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="27" font-weight="500" fill="#cbd5e1">Template overlay and assisted painting for WPlace</text>
+    <text x="256" y="254" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="19" fill="#94a3b8">Auto Place  ·  Auto-Paint  ·  Live resizing  ·  Owned colors</text>
 
     <rect x=".5" y=".5" width="1279" height="319" rx="28" fill="none" stroke="#fff" stroke-opacity=".12"/>
   </g>

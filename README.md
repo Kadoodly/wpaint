@@ -1,194 +1,214 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="WPaint: hover to paint on WPlace" width="100%">
+  <img src="docs/banner.svg" alt="WPaint" width="100%">
 </p>
 
 <p align="center">
-  <img alt="Version 1.0" src="https://img.shields.io/badge/version-1.0-2dd4bf?style=for-the-badge">
-  <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-38bdf8?style=for-the-badge">
-  <img alt="Chrome and Edge" src="https://img.shields.io/badge/Chrome%20%7C%20Edge-supported-818cf8?style=for-the-badge&logo=googlechrome&logoColor=white">
-  <img alt="No setup" src="https://img.shields.io/badge/no%20build-just%20load%20it-f472b6?style=for-the-badge">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0-0f766e?style=flat-square">
+  <img alt="Manifest" src="https://img.shields.io/badge/manifest-v3-0369a1?style=flat-square">
+  <img alt="Browsers" src="https://img.shields.io/badge/browsers-Chrome%20%7C%20Edge-4f46e5?style=flat-square">
+  <img alt="Build" src="https://img.shields.io/badge/build-none%20required-475569?style=flat-square">
 </p>
 
 <p align="center">
-  <b>WPaint</b> puts your artwork over the <a href="https://wplace.live">WPlace</a> map and places the right color<br>
-  as you move the mouse over each pixel, so you don't have to click hundreds of times.
+  A browser extension that overlays a template image on the <a href="https://wplace.live">WPlace</a> canvas<br>
+  and selects and places the matching color as the cursor moves over each pixel.
 </p>
 
----
+> [!WARNING]
+> **Use at your own risk.** WPaint is an independent project and is not affiliated with, endorsed by, or supported by WPlace.
+> Automated or assisted input may conflict with the site's terms of service, and your account is your responsibility.
+> The software is provided as-is, without warranty of any kind.
 
-> [!NOTE]
-> WPaint was made for people who love WPlace but find constant clicking painful (arthritis, carpal tunnel, RSI).
-> It never sends anything on its own. Pixels only go out when **you** press the site's own **Paint** button.
+## Contents
 
-## ✨ Features
+- [Overview](#overview)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Keyboard shortcuts](#keyboard-shortcuts)
+- [Privacy](#privacy)
+- [Troubleshooting](#troubleshooting)
+- [Project structure](#project-structure)
+- [Disclaimer](#disclaimer)
 
-| Feature | What it does |
+## Overview
+
+WPaint takes the repetitive clicking out of painting on WPlace. Load an image, position it on the canvas, and let WPaint pick and place the right color for each pixel. It works alongside the site's normal painting flow: pixels are staged in the site's own palette, and nothing is submitted until you press the site's **Paint** button.
+
+## Features
+
+| Feature | Description |
 |---|---|
-| 🖱️ **Auto Place** | Turn it on, open the Paint palette, and glide the mouse over your art. Each pixel under the cursor gets the right color and is placed for you. |
-| 🤖 **Auto-Paint** | Give your hand a break. A ghost cursor fills in the pixels on screen for you, stopping when your charges run out. |
-| ⏩ **Speed buttons** | Run Auto-Paint at normal speed, or <kbd>2×</kbd> <kbd>5×</kbd> <kbd>10×</kbd>. Click the lit one again to go back to normal. |
-| 🔀 **Mode switcher** | Auto Place and Auto-Paint each have their own tab and keep their own settings. |
-| 📐 **Live resize** | Drag the size slider or type a width or height. The ratio stays locked and the preview updates as you go. |
-| 🎨 **Colors you own** | Reads which premium colors your account has bought, so the art only uses colors you can actually place. |
-| ✅ **Skips finished pixels** | Checks the live canvas and only places pixels that don't already match. |
-| 🧭 **Easy positioning** | Click once to drop the template, then nudge it pixel by pixel with the arrow pad. Overlay opacity is adjustable. |
-| 💾 **Remembers everything** | Your image, position, size and settings are still there after you close the browser, until you press **Remove**. |
-| 🪟 **Slate glass panel** | A small, draggable panel that collapses out of the way when you don't need it. |
+| **Auto Place** | With the site's Paint palette open, each template pixel under the cursor is given the correct color and placed. No clicking is required. |
+| **Auto-Paint** | Fills the template pixels currently on screen using an on-screen cursor, and stops when your available charges are used. |
+| **Speed control** | Auto-Paint runs at standard speed or at 2×, 5× or 10×. Selecting the active speed again returns to standard. |
+| **Separate modes** | Auto Place and Auto-Paint have their own tabs and keep their own settings. |
+| **Live resizing** | Resize the template with a slider or exact width and height values. The aspect ratio is preserved and the preview updates immediately. |
+| **Owned colors** | Detects which premium colors your account has unlocked, and limits the template to colors you can place. |
+| **Canvas awareness** | Reads the current canvas and skips pixels that already match the template. |
+| **Positioning** | Place the template with a single click, adjust it one pixel at a time, and set the overlay opacity. |
+| **Persistence** | The image, position, size and settings are saved in the browser and restored on your next visit, until removed. |
+| **Compact panel** | A draggable, collapsible control panel. |
 
-## 📸 Screenshots
+## Screenshots
 
 <table>
   <tr>
-    <th>Auto Place</th>
-    <th>Auto-Paint</th>
+    <th width="50%">Auto Place</th>
+    <th width="50%">Auto-Paint</th>
   </tr>
   <tr>
-    <td align="center" valign="top"><img src="docs/panel-place.png" alt="WPaint panel in Auto Place mode" width="300"></td>
-    <td align="center" valign="top"><img src="docs/panel-paint.png" alt="WPaint panel in Auto-Paint mode at 2x speed" width="300"></td>
+    <td align="center" valign="top"><img src="docs/panel-place.png" alt="Control panel in Auto Place mode" width="300"></td>
+    <td align="center" valign="top"><img src="docs/panel-paint.png" alt="Control panel in Auto-Paint mode" width="300"></td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="docs/autopaint.png" alt="Auto-Paint filling in a template with the ghost cursor" width="100%">
-  <br><sub><i>Auto-Paint at work. The ghost cursor fills in the purple sky one pixel at a time.</i></sub>
+  <img src="docs/autopaint.png" alt="Auto-Paint in progress on a template" width="100%">
+  <br><sub>Auto-Paint in progress. The on-screen cursor fills the template row by row.</sub>
 </p>
 
 <details>
-<summary><b>More screenshots</b></summary>
+<summary>Additional screenshots</summary>
 <br>
 <p align="center">
-  <img src="docs/autoplace.png" alt="Template placed on the map with Auto Place on" width="100%">
-  <br><sub><i>The template sits over the map, ready for Auto Place.</i></sub>
+  <img src="docs/autoplace.png" alt="Template positioned on the canvas with Auto Place enabled" width="100%">
+  <br><sub>Template positioned on the canvas with Auto Place enabled.</sub>
 </p>
 <p align="center">
-  <img src="docs/autopaint-done.png" alt="Auto-Paint finished after using all charges" width="100%">
-  <br><sub><i>Auto-Paint stops when your charges run out. Press Paint to send them.</i></sub>
+  <img src="docs/autopaint-done.png" alt="Auto-Paint finished after using all available charges" width="100%">
+  <br><sub>Auto-Paint stops once all available charges have been used.</sub>
 </p>
 </details>
 
-> [!TIP]
-> The screenshots use a made-up demo map, not real WPlace art.
+<sub>Screenshots were taken on a simulated demo canvas and do not show real WPlace artwork.</sub>
 
-## 📦 Install
+## Installation
 
-WPaint isn't on the Chrome Web Store, so you load it yourself. It takes about a minute.
+WPaint is not published on the Chrome Web Store and is installed as an unpacked extension.
 
-1. Download this repo: **Code ▸ Download ZIP**, then unzip it somewhere you'll keep it.
-2. Open <code>chrome://extensions</code> (or <code>edge://extensions</code> in Edge).
-3. Turn on **Developer mode** (top right in Chrome, left sidebar in Edge).
-4. Click **Load unpacked** and pick the unzipped folder (the one that has `manifest.json` in it).
-5. Open or reload [wplace.live](https://wplace.live). The WPaint panel appears on the left side. Drag its header to move it.
+1. Download the repository (**Code → Download ZIP**) and extract it to a permanent location.
+2. Open `chrome://extensions` in Chrome, or `edge://extensions` in Edge.
+3. Enable **Developer mode**.
+4. Select **Load unpacked** and choose the extracted folder (the folder containing `manifest.json`).
+5. Open or reload [wplace.live](https://wplace.live). The WPaint panel appears on the left side of the page and can be moved by dragging its header.
 
-> [!IMPORTANT]
-> Don't delete or move the folder after loading it. The browser runs WPaint from that folder.
-> To update, replace the files and press the ↻ reload button on the extension card.
+> [!NOTE]
+> The browser loads the extension from the selected folder, so the folder must not be moved or deleted.
+> To update, replace the files and select **Reload** on the extension's card.
 
-## 🎨 How to use
+## Usage
 
-### 1. Add your art
-- Click **Choose image…** and pick a PNG or JPG.
-- Use the **Size** slider (or the **W** / **H** boxes) to make it the size you want. **Reset** goes back to the image's own size.
-- Leave **Only colors I own** on so the art only uses colors your account can place.
+### 1. Load a template
 
-### 2. Put it on the map
-- Click **Move template**, then click the map where the **top-left corner** should go.
-- Fine-tune with the ▲ ◀ ▶ ▼ pad. Each press moves it one pixel.
-- Use the **Overlay** slider to make the template more or less see-through.
+- Select **Choose image…** and open a PNG or JPEG file.
+- Adjust the size with the **Size** slider or the **W** and **H** fields. **Reset** restores the original dimensions.
+- Keep **Only colors I own** enabled to restrict the template to colors available on your account.
+
+### 2. Position the template
+
+- Select **Move template**, then click the canvas where the template's top-left corner should be.
+- Use the arrow pad to adjust the position by one pixel at a time.
+- Use the **Overlay** slider to change the template's opacity.
 
 ### 3. Paint
-Open the site's **Paint** palette first, then pick a mode:
+
+Open the site's **Paint** palette, then choose a mode.
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-#### 🖱️ Auto Place
-1. Choose the **Auto Place** tab.
-2. Turn on **Place as I hover** (or press <kbd>H</kbd>).
-3. Move the mouse over your art. No clicking.
-4. Press the site's **Paint** button to send the pixels.
+**Auto Place**
+
+1. Select the **Auto Place** tab.
+2. Enable **Place as I hover**, or press <kbd>H</kbd>.
+3. Move the cursor across the template.
+4. Press the site's **Paint** button to submit.
 
 </td>
 <td width="50%" valign="top">
 
-#### 🤖 Auto-Paint
-1. Choose the **Auto-Paint** tab.
-2. Pick a speed if you like: <kbd>2×</kbd> <kbd>5×</kbd> <kbd>10×</kbd>.
-3. Press **✦ Auto-Paint** and let it work.
-4. When it says it's done, press the site's **Paint** button.
+**Auto-Paint**
+
+1. Select the **Auto-Paint** tab.
+2. Optionally choose a speed.
+3. Select **Auto-Paint**.
+4. When it finishes, press the site's **Paint** button to submit.
 
 </td>
 </tr>
 </table>
 
 > [!TIP]
-> Auto-Paint only fills pixels that are **on screen**. Zoom out or pan so your art is in view.
-> It also stops at your charge count, so it never queues more than you can send.
+> Auto-Paint only fills pixels that are visible on screen, so keep the template in view.
+> It never stages more pixels than your current charge count.
 
-### ⌨️ Shortcuts
+## Keyboard shortcuts
 
-| Key | What it does |
+| Key | Action |
 |:---:|---|
-| <kbd>H</kbd> | Turns Auto Place on or off (and switches to the Auto Place tab) |
-| <kbd>Esc</kbd> | Stops Auto-Paint, or cancels moving the template |
+| <kbd>H</kbd> | Turn Auto Place on or off and switch to the Auto Place tab |
+| <kbd>Esc</kbd> | Stop Auto-Paint, or cancel template placement |
 
-## 🔒 Privacy & safety
+## Privacy
 
-> [!IMPORTANT]
-> - 🚫 **No passwords, tokens or cookies are stored or sent anywhere** by WPaint.
-> - 👤 To see your charges and bought colors, it reads the same account info the site itself loads (`/me`), using the site's own login.
-> - 💾 Your template and settings are saved only in your browser's local storage for wplace.live.
-> - ✋ Nothing is painted until **you** press the site's **Paint** button, so the site's normal checks happen exactly as usual.
-> - 🧩 It only runs on `https://wplace.live/*` and asks for no extra browser permissions.
+- WPaint does not store or transmit passwords, tokens or cookies.
+- Charge counts and unlocked colors are read from the site's own account endpoint (`/me`) using your existing session.
+- Templates and settings are kept in the browser's local storage for wplace.live only.
+- Pixels are submitted only when you press the site's **Paint** button, so the site's standard verification is unchanged.
+- The extension runs only on `https://wplace.live/*` and requests no additional browser permissions.
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 <details>
-<summary><b>The panel says “Move or zoom the map once to connect.”</b></summary>
+<summary>The panel shows "Move or zoom the map once to connect."</summary>
 <br>
-Drag or scroll the map a little. WPaint hooks into the map the first time it moves.
+Pan or zoom the map once. WPaint connects to the map the first time it moves.
 </details>
 
 <details>
-<summary><b>Nothing gets placed when I hover.</b></summary>
+<summary>Pixels are not placed while hovering.</summary>
 <br>
 
-- Make sure the site's **Paint** palette is open.
-- Make sure **Place as I hover** is on (the status dot turns green).
-- Pixels that already match your art are skipped on purpose.
+- Confirm that the site's **Paint** palette is open.
+- Confirm that **Place as I hover** is enabled.
+- Pixels that already match the template are skipped intentionally.
 </details>
 
 <details>
-<summary><b>Some colors are skipped as “locked”.</b></summary>
+<summary>Some pixels are reported as locked.</summary>
 <br>
-Those are premium colors you haven't bought. Turn on <b>Only colors I own</b> and WPaint will pick the closest color you do have.
+These pixels use premium colors that are not unlocked on your account. Enable <b>Only colors I own</b> to substitute the closest available color.
 </details>
 
 <details>
-<summary><b>“Could not find the WPlace map.”</b></summary>
+<summary>The panel shows "Could not find the WPlace map."</summary>
 <br>
-The site may have updated. Reload the page. If it keeps happening, please open an issue.
+The site may have been updated. Reload the page. If the problem continues, please open an issue.
 </details>
 
 <details>
-<summary><b>My image is too big to save.</b></summary>
+<summary>The image cannot be saved for next time.</summary>
 <br>
-Very large images can't fit in browser storage. WPaint still works until you reload. Try a smaller image or shrink it first.
+Very large images can exceed the browser's storage limit. The template continues to work until the page is reloaded. Use a smaller image to keep it saved.
 </details>
 
-## 📁 What's inside
+## Project structure
 
 ```
-├── manifest.json     extension settings (Manifest V3)
-├── hover-paint.js    all of WPaint: map hook, template, panel, Auto Place and Auto-Paint
-├── icons/            app icon (SVG source and PNG sizes)
-└── docs/             README images
+.
+├── manifest.json     Extension manifest (Manifest V3)
+├── hover-paint.js    Content script: map connection, template, panel, Auto Place and Auto-Paint
+├── icons/            Extension icon (SVG source and PNG sizes)
+└── docs/             Images used in this README
 ```
 
-## ⚠️ Disclaimer
+## Disclaimer
 
-> [!WARNING]
-> WPaint is a fan-made helper and is **not affiliated with or endorsed by WPlace**.
-> Please follow the site's rules and be kind to other people's art. Use it at your own risk.
-
-<p align="center"><sub>Made with 💙 for comfy pixel painting.</sub></p>
+> [!CAUTION]
+> This software is provided "as is", without warranty of any kind, express or implied.
+> WPaint is not affiliated with, endorsed by, or supported by WPlace. You use it at your own risk and are solely
+> responsible for how it is used and for complying with the WPlace terms of service. The authors accept no liability
+> for account restrictions, lost progress, or any other consequences of its use.
