@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Kadoodly/wpaint/releases/latest"><img alt="Working as of November 2026" src="https://img.shields.io/badge/working-as%20of%20November%202026-22c55e?style=for-the-badge&labelColor=15803d" height="34"></a>
+</p>
+
+<p align="center">
   A browser extension that overlays a template image on the <a href="https://wplace.live">WPlace</a> canvas<br>
   and selects and places the matching color as the cursor moves over each pixel.
 </p>
